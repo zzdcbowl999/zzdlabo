@@ -1,0 +1,69 @@
+name: Deploy MkDocs
+
+# いつこの自動処理を実行するか
+on:
+  push:
+    branches:
+      - main  # mainブランチにプッシュされた時に実行（masterの場合は書き換えてください）
+
+# GitHub Actionsがリポジトリを操作するための権限設定
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. リポジトリのコードをチェックアウト（取得）する
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Python環境をセットアップする
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # 3. MkDocs（と必要なパッケージ）をインストールする
+      - name: Install dependencies
+        run: |
+          pip install babel==2.18.0
+          pip install backrefs==6.2
+          pip install beautifulsoup4==4.14.3
+          pip install certifi==2026.2.25
+          pip install charset-normalizer==3.4.5
+          pip install click==8.1.8
+          pip install colorama==0.4.6
+          pip install ghp-import==2.1.0
+          pip install idna==3.11
+          pip install importlib_metadata==8.7.1
+          pip install Jinja2==3.1.6
+          pip install lxml==6.0.2
+          pip install Markdown==3.9
+          pip install MarkupSafe==3.0.3
+          pip install mergedeep==1.3.4
+          pip install mkdocs==1.6.1
+          pip install mkdocs-asciidoctor-backend==0.1.14
+          pip install mkdocs-get-deps==0.2.2
+          pip install mkdocs-material==9.7.5
+          pip install mkdocs-material-extensions==1.3.1
+          pip install packaging==26.0
+          pip install paginate==0.5.7
+          pip install pathspec==1.0.4
+          pip install platformdirs==4.4.0
+          pip install Pygments==2.19.2
+          pip install pymdown-extensions==10.21
+          pip install python-dateutil==2.9.0.post0
+          pip install PyYAML==6.0.3
+          pip install pyyaml_env_tag==1.1
+          pip install requests==2.32.5
+          pip install six==1.17.0
+          pip install soupsieve==2.8.3
+          pip install typing_extensions==4.15.0
+          pip install urllib3==2.6.3
+          pip install watchdog==6.0.0
+          pip install zipp==3.23.0
+
+      # 4. ビルドとデプロイを実行する
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force

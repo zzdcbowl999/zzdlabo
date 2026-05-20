@@ -1,0 +1,42 @@
+site_name: ZZDLabo
+
+theme:
+  name: material
+  logo: assets/logo.svg
+  favicon: assets/favicon.ico
+  features:
+    - toc.integrate       # これがTOCを統合する設定
+    - navigation.sections # オプション: セクション分けを強化
+    - navigation.expand # 常に展開した状態にしたい場合はこれを外す
+  palette:
+    - scheme: default
+      primary: "blue grey"
+      accent: "pink"
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: ダークモードに切り替えます。
+    - scheme: slate
+      primary: "blue grey"
+      accent: "orange"
+      toggle:
+        icon: material/toggle-switch
+        name: ライトモードに切り替えます。
+
+hooks:
+  - hooks.py  # <-- ここに追加
+
+plugins:
+  - search
+  - macros
+
+markdown_extensions:
+ - mdx_tableau
+ - admonition
+
+extra_css:
+  - "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - 華厳経疏序: kyoshojo.md
