@@ -32,6 +32,15 @@ plugins:
 markdown_extensions:
  - mdx_tableau
  - admonition
+ - footnotes
+ - pymdownx.emoji:
+     emoji_index: !!python/name:material.extensions.emoji.twemoji
+     emoji_generator: !!python/name:material.extensions.emoji.to_svg
+ - pymdownx.superfences:
+     custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
 
 extra_css:
   - "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
